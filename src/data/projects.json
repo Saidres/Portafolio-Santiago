@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "title": {
+      "es": "Optimización de Inventario con IA (Llama 3.2 3B)",
+      "en": "AI Inventory Optimization with Llama 3.2 3B"
+    },
+    "company": "Servitec E.D.S",
+    "description": {
+      "es": "Desarrollo de un chatbot con el modelo Llama 3.2 3B para consultar el inventario de la empresa en lenguaje natural en tiempo real a solicitud del negocio.",
+      "en": "Development of an AI chatbot using the Llama 3.2 3B model to query company inventory in natural language in real-time."
+    },
+    "category": {
+      "es": "Backend & IA Aplicada",
+      "en": "Backend & Applied AI"
+    },
+    "technologies": [
+      "Llama 3.2 3B",
+      "Python",
+      "APIs REST",
+      "Prompt Engineering",
+      "PostgreSQL"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1000&q=80",
+    "liveUrl": "",
+    "repositoryUrl": "https://github.com/Saidres"
+  },
+  {
+    "id": 2,
+    "title": {
+      "es": "Microservicios Reactivos & Migración Hexagonal",
+      "en": "Reactive Microservices & Hexagonal Migration"
+    },
+    "company": "Seguros SURA",
+    "description": {
+      "es": "Migración de microservicios de Scala a Java bajo Arquitectura Hexagonal (-15% tiempo de despliegue) y servicios reactivos con Spring WebFlux (+35% velocidad de respuesta en alta concurrencia). Cobertura al 82% con JUnit y Mockito.",
+      "en": "Architectural migration of microservices from Scala to Java under Hexagonal Architecture (-15% deploy time) and reactive services with Spring WebFlux (+35% speed under high concurrency). 82% test coverage with JUnit and Mockito."
+    },
+    "category": {
+      "es": "Backend Corporativo",
+      "en": "Enterprise Backend"
+    },
+    "technologies": [
+      "Java",
+      "Spring Boot",
+      "Spring WebFlux",
+      "Arquitectura Hexagonal",
+      "JUnit",
+      "Mockito",
+      "Azure DevOps"
+    ],
+    "image": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80",
+    "liveUrl": "",
+    "repositoryUrl": "https://github.com/Saidres"
+  },
+  {
+    "id": 3,
+    "title": {
+      "es": "Plataforma de Servicios & APIs REST con Django",
+      "en": "Services Platform & REST APIs with Django"
+    },
+    "company": "Redinfoco · KeySafe · Academix",
+    "description": {
+      "es": "Diseño e implementación de arquitectura web con Django y PostgreSQL para gestión de accesos, autenticación, autorización y automatización operativa.",
+      "en": "Design and implementation of web architecture with Django and PostgreSQL for access management, authentication, authorization, and process automation."
+    },
+    "category": {
+      "es": "Arquitectura Web & APIs",
+      "en": "Web Architecture & APIs"
+    },
+    "technologies": [
+      "Python",
+      "Django",
+      "PostgreSQL",
+      "REST APIs",
+      "Modelado Relacional"
+    ],
+    "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80",
+    "liveUrl": "",
+    "repositoryUrl": "https://github.com/Saidres"
+  }
+]
