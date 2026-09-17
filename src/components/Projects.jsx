@@ -1,7 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FolderGit2, ArrowUpRight, ExternalLink, Terminal, Layers, Sparkles } from 'lucide-react';
+import { 
+  ArrowUpRight, 
+  Terminal, 
+  Layers, 
+  Sparkles, 
+  ExternalLink,
+  Code2,
+  FolderGit2
+} from 'lucide-react';
 import { GithubIcon } from './Icons';
 import projectsData from '../data/projects.json';
 import { useLanguage } from '../context/LanguageContext';
@@ -11,6 +19,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Projects({ projects = projectsData }) {
   const sectionRef = useRef(null);
   const { language, t } = useLanguage();
+  const [activeFilter, setActiveFilter] = useState('all');
 
   const getLocalized = (field) => {
     if (typeof field === 'object' && field !== null) {
@@ -19,38 +28,44 @@ export default function Projects({ projects = projectsData }) {
     return field || '';
   };
 
+  const categories = [
+    { id: 'all', label: language === 'en' ? 'All Projects' : 'Todos los Proyectos' },
+    { id: 'java', label: 'Java & Spring Boot' },
+    { id: 'ai', label: 'IA & Python' },
+    { id: 'microservices', label: 'Microservicios' },
+  ];
+
+  const filteredProjects = projects.filter((p) => {
+    if (activeFilter === 'all') return true;
+    if (activeFilter === 'java') {
+      return p.technologies.some((tech) => tech.toLowerCase().includes('java') || tech.toLowerCase().includes('spring'));
+    }
+    if (activeFilter === 'ai') {
+      return p.technologies.some((tech) => tech.toLowerCase().includes('llama') || tech.toLowerCase().includes('python'));
+    }
+    if (activeFilter === 'microservices') {
+      return p.technologies.some((tech) => tech.toLowerCase().includes('microservicios') || tech.toLowerCase().includes('hexagonal') || tech.toLowerCase().includes('rest'));
+    }
+    return true;
+  });
+
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        '.projects-header',
+        '.project-bento-card',
         { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          duration: 0.7,
+          stagger: 0.12,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-
-      gsap.fromTo(
-        '.projects-card-container',
-        { opacity: 0, y: 35 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 70%',
+            start: 'top 75%',
             toggleActions: 'play none none none',
           },
         }
@@ -58,223 +73,120 @@ export default function Projects({ projects = projectsData }) {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [language]);
-
-  const hasProjects = projects && projects.length > 0;
+  }, [activeFilter]);
 
   return (
     <section
       id="proyectos"
       ref={sectionRef}
-      className="py-24 md:py-32 bg-arctic-ice border-b border-arctic-night/5 relative"
+      className="py-24 md:py-32 bg-slate-50/50 dark:bg-dark-bg border-b border-slate-200/80 dark:border-dark-border/60 relative overflow-hidden transition-colors duration-300"
     >
-      <div className="max-w-6xl mx-auto px-6 sm:px-8">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8">
         
         {/* Section Header */}
-        <div className="projects-header max-w-2xl mb-16">
-          <div className="mb-4">
-            <span className="font-mono text-xs font-semibold tracking-wider text-arctic-accent uppercase bg-white px-3.5 py-1.5 rounded-full border border-arctic-night/10 inline-flex items-center gap-2">
-              <span>{t.projects.tag}</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            <span className="font-mono text-xs font-semibold tracking-wider text-brand-600 dark:text-brand-400 uppercase bg-brand-50 dark:bg-brand-950/40 px-3.5 py-1.5 rounded-full border border-brand-200 dark:border-brand-500/30 inline-flex items-center gap-2">
+              <span>{t.projects?.tag || '03 / PROYECTOS & ARQUITECTURA'}</span>
             </span>
+            <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight tracking-tight mt-4">
+              {t.projects?.title || 'Sistemas construidos para'}{' '}
+              <span className="bg-gradient-to-r from-brand-600 to-brand-purple dark:from-brand-400 dark:to-cyan-400 bg-clip-text text-transparent">
+                {t.projects?.titleHighlight || 'durar & escalar.'}
+              </span>
+            </h2>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-arctic-night tracking-tight mb-4">
-            {t.projects.title}{' '}
-            <span className="font-serif italic font-normal text-arctic-accent">
-              {t.projects.titleHighlight}
-            </span>
-          </h2>
-          <p className="text-base sm:text-lg text-arctic-night/70 font-normal leading-relaxed">
-            {t.projects.description}
-          </p>
+
+          {/* Category Filter Pills */}
+          <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-100 dark:bg-dark-surface rounded-xl font-mono text-xs self-start md:self-auto border border-slate-200/60 dark:border-dark-border">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setActiveFilter(cat.id)}
+                className={`px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer ${
+                  activeFilter === cat.id
+                    ? 'bg-white dark:bg-brand-600 text-slate-900 dark:text-white shadow-2xs font-semibold'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Dynamic Content: Empty State vs Populated Projects */}
-        <div className="projects-card-container">
-          {!hasProjects ? (
-            /* ESTADO VACÍO ELEGANTE, INTENCIONAL Y EDITORIAL */
-            <div className="p-8 sm:p-14 rounded-5xl bg-white border border-arctic-night/10 shadow-soft relative overflow-hidden">
-              
-              {/* Subtle background technical grid */}
-              <div
-                className="absolute inset-0 opacity-10 pointer-events-none"
-                style={{
-                  backgroundImage: 'radial-gradient(circle, #1A56DB 1px, transparent 1px)',
-                  backgroundSize: '24px 24px',
-                }}
-              />
+        {/* Bento Grid for Projects */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {filteredProjects.map((project, idx) => {
+            const isFeatured = idx === 0 || idx === 1;
 
-              <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                
-                {/* Left explanation */}
-                <div className="lg:col-span-7">
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className="w-2 h-2 rounded-full bg-arctic-accent animate-pulse" />
-                    <span className="font-mono text-xs font-semibold text-arctic-accent tracking-wider uppercase">
-                      {t.projects.emptyBadge}
+            return (
+              <div
+                key={project.id}
+                className={`project-bento-card bento-card spotlight-card p-6 sm:p-8 flex flex-col justify-between ${
+                  isFeatured ? 'md:col-span-1' : ''
+                }`}
+              >
+                <div>
+                  {/* Top bar: Company & Category */}
+                  <div className="flex items-center justify-between gap-2 pb-4 mb-4 border-b border-slate-100 dark:border-dark-border/60">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-brand-500" />
+                      <span className="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">
+                        {project.company}
+                      </span>
+                    </div>
+                    <span className="font-mono text-[10.5px] px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-dark-surface text-slate-600 dark:text-slate-400 border border-slate-200/60 dark:border-dark-border">
+                      {getLocalized(project.category)}
                     </span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-bold text-arctic-night tracking-tight mb-4">
-                    {t.projects.emptyTitle}
+                  {/* Title */}
+                  <h3 className="font-heading text-xl font-bold text-slate-900 dark:text-white mb-3">
+                    {getLocalized(project.title)}
                   </h3>
 
-                  <p className="text-base text-arctic-night/70 leading-relaxed mb-8 max-w-lg font-normal">
-                    {t.projects.emptyDescription}
+                  {/* Description */}
+                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                    {getLocalized(project.description)}
                   </p>
+                </div>
 
-                  <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-arctic-night/60">
-                    <span className="px-3 py-1.5 rounded-lg bg-arctic-ice border border-arctic-night/10">
-                      {t.projects.tagRestful}
-                    </span>
-                    <span className="px-3 py-1.5 rounded-lg bg-arctic-ice border border-arctic-night/10">
-                      {t.projects.tagMaintainable}
-                    </span>
-                    <span className="px-3 py-1.5 rounded-lg bg-arctic-ice border border-arctic-night/10">
-                      {t.projects.tagCleanArch}
+                <div>
+                  {/* Technology Pills */}
+                  <div className="flex flex-wrap gap-1.5 pt-4 border-t border-slate-100 dark:border-dark-border/60 mb-5">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-2.5 py-1 rounded-md bg-slate-50 dark:bg-dark-surface border border-slate-200/70 dark:border-dark-border text-[11px] font-mono text-slate-700 dark:text-slate-300"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Action Link Button */}
+                  <div className="flex items-center justify-between">
+                    <a
+                      href={project.repositoryUrl || 'https://github.com/Saidres'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-xs font-mono font-semibold text-brand-600 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-300 transition-colors"
+                    >
+                      <GithubIcon className="w-4 h-4" />
+                      <span>{language === 'en' ? 'Inspect Repository' : 'Ver Repositorio'}</span>
+                      <ArrowUpRight className="w-3.5 h-3.5" />
+                    </a>
+
+                    <span className="font-mono text-[10px] text-slate-400">
+                      {project.company.includes('SURA') ? 'Corporate Microservice' : 'Production System'}
                     </span>
                   </div>
                 </div>
-
-                {/* Right Abstract Visual: Wireframe Pipeline Structure */}
-                <div className="lg:col-span-5">
-                  <div className="p-6 rounded-3xl bg-arctic-ice border border-arctic-night/10 shadow-subtle space-y-3">
-                    
-                    <div className="flex items-center justify-between pb-3 border-b border-arctic-night/10 font-mono text-[11px] text-arctic-night/50">
-                      <span className="flex items-center gap-1.5">
-                        <Terminal className="w-3.5 h-3.5 text-arctic-accent" />
-                        {t.projects.cardRepo}
-                      </span>
-                      <span>PREVIEW</span>
-                    </div>
-
-                    {/* Placeholder architectural cards representing slots ready to be filled */}
-                    <div className="p-3.5 rounded-2xl bg-white border border-dashed border-arctic-night/20 flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-xl bg-arctic-ice flex items-center justify-center text-arctic-night/50">
-                          <Layers className="w-4 h-4" />
-                        </div>
-                        <div>
-                          <div className="text-xs font-semibold text-arctic-night">{t.projects.project1Title}</div>
-                          <div className="font-mono text-[10px] text-arctic-night/40">{t.projects.project1Status}</div>
-                        </div>
-                      </div>
-                      <span className="font-mono text-[10px] font-semibold text-arctic-accent">
-                        {t.projects.cardPending}
-                      </span>
-                    </div>
-
-                    <div className="p-3.5 rounded-2xl bg-white/60 border border-dashed border-arctic-night/15 flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className="w-8 h-8 rounded-xl bg-arctic-ice/60 flex items-center justify-center text-arctic-night/30">
-                          <FolderGit2 className="w-4 h-4" />
-                        </div>
-                        <div>
-                          <div className="text-xs font-semibold text-arctic-night/50">{t.projects.project2Title}</div>
-                          <div className="font-mono text-[10px] text-arctic-night/30">{t.projects.project2Status}</div>
-                        </div>
-                      </div>
-                      <span className="font-mono text-[10px] text-arctic-night/40">
-                        {t.projects.cardUpcoming}
-                      </span>
-                    </div>
-
-                    <div className="pt-2 text-center">
-                      <span className="font-mono text-[10px] text-arctic-night/50">
-                        {t.projects.cardFooter}
-                      </span>
-                    </div>
-
-                  </div>
-                </div>
-
               </div>
-
-            </div>
-          ) : (
-            /* RENDERIZADO CUANDO SE AGREGUEN PROYECTOS REALES */
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {projects.map((project) => {
-                const localizedTitle = getLocalized(project.title);
-                const localizedCategory = getLocalized(project.category);
-                const localizedDesc = getLocalized(project.description);
-
-                return (
-                  <article
-                    key={project.id || localizedTitle}
-                    className="card-hover group rounded-4xl bg-white border border-arctic-night/10 overflow-hidden shadow-subtle flex flex-col justify-between"
-                  >
-                    <div>
-                      {project.image && (
-                        <div className="h-56 w-full overflow-hidden relative">
-                          <img
-                            src={project.image}
-                            alt={localizedTitle}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                          />
-                          <div className="absolute top-4 right-4 bg-arctic-night/80 backdrop-blur-md text-white font-mono text-xs px-3 py-1 rounded-full">
-                            {localizedCategory}
-                          </div>
-                        </div>
-                      )}
-                      <div className="p-7">
-                        <div className="flex items-center justify-between gap-2 mb-2">
-                          <span className="font-mono text-xs text-arctic-accent uppercase font-semibold">
-                            {localizedCategory}
-                          </span>
-                          {project.company && (
-                            <span className="font-mono text-[10px] text-arctic-night/60 bg-arctic-ice px-2 py-0.5 rounded border border-arctic-night/10 font-medium">
-                              {project.company}
-                            </span>
-                          )}
-                        </div>
-                        <h3 className="text-xl sm:text-2xl font-bold text-arctic-night mb-3">
-                          {localizedTitle}
-                        </h3>
-                        <p className="text-sm text-arctic-night/70 leading-relaxed mb-6 font-normal">
-                          {localizedDesc}
-                        </p>
-                        {project.technologies && (
-                          <div className="flex flex-wrap gap-2 mb-6">
-                            {project.technologies.map((tech) => (
-                              <span
-                                key={tech}
-                                className="font-mono text-[11px] px-2.5 py-1 rounded-lg bg-arctic-ice text-arctic-night/80 border border-arctic-night/10"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="p-7 pt-0 flex items-center gap-4">
-                      {project.liveUrl && (
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-arctic-accent hover:underline"
-                        >
-                          {t.projects.viewDemo} <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
-                      )}
-                      {project.repositoryUrl && (
-                        <a
-                          href={project.repositoryUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-arctic-night/70 hover:text-arctic-night"
-                        >
-                          {t.projects.viewCode} <GithubIcon className="w-3.5 h-3.5" />
-                        </a>
-                      )}
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          )}
+            );
+          })}
         </div>
 
       </div>

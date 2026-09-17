@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Building2, Calendar, MapPin, CheckCircle2 } from 'lucide-react';
+import { Building2, Calendar, MapPin, CheckCircle2, Sparkles, TrendingUp, ShieldCheck, Zap } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -14,10 +14,12 @@ const experiencesData = {
       period: '04/2026 – 06/2026',
       location: 'Pasto, Colombia',
       summary: 'Desarrollo e integración de un chatbot inteligente con el modelo Llama 3.2 3B para consulta de inventario en lenguaje natural.',
+      impactMetric: 'IA APLICADA // LLAMA 3.2 3B',
+      impactColor: 'purple',
       highlights: [
-        'Desarrollo de chatbot con Llama 3.2 3B para consulta de inventario en lenguaje natural a solicitud del negocio.',
-        'Integración con sistemas internos existentes para reflejar inventario real y sincronizado en tiempo real.',
-        'Diseño y ajuste de prompts del modelo para máxima precisión ante diversas modalidades de consulta.',
+        'Desarrollo de un chatbot con el modelo Llama 3.2 3B para consultar el inventario de la empresa en lenguaje natural.',
+        'Integración del chatbot con los sistemas internos existentes para que las respuestas reflejaran el inventario real y actualizado.',
+        'Diseño y ajuste de prompts del modelo para mejorar la precisión y relevancia de las respuestas ante distintas formas de preguntar.',
       ],
       tags: ['Llama 3.2 3B', 'Python', 'APIs REST', 'Prompt Engineering', 'Integración'],
       badge: 'IA APLICADA',
@@ -26,13 +28,15 @@ const experiencesData = {
       company: 'Seguros SURA',
       role: 'Ingeniero de Software Backend',
       period: '02/2025 – 02/2026',
-      location: 'Medellín (Remoto)',
-      summary: 'Migración arquitectónica, desarrollo reactivo de alta concurrencia y aumento de cobertura de calidad en servicios corporativos.',
+      location: 'Medellín (Remoto Corporativo)',
+      summary: 'Migración arquitectónica, microservicios reactivos en alta concurrencia y pruebas automatizadas en plataformas corporativas.',
+      impactMetric: '+35% VELOCIDAD // 82% TESTS',
+      impactColor: 'blue',
       highlights: [
-        'Migración de microservicios de Scala a Java bajo Arquitectura Hexagonal, reduciendo tiempos de despliegue en un 15%.',
-        'Implementación de servicios reactivos con Spring WebFlux, mejorando hasta 35% los tiempos de respuesta en alta concurrencia.',
-        'Aumento de la cobertura de pruebas automatizadas del 62% al 82% mediante JUnit y Mockito.',
-        'Diseño de APIs REST para integración de sistemas internos y pipelines CI/CD en Azure DevOps.',
+        'Migración de microservicios de Scala a Java bajo Arquitectura Hexagonal, reduciendo el tiempo de despliegue en un 15%.',
+        'Implementación de servicios reactivos con Spring WebFlux, mejorando hasta 35% los tiempos de respuesta en escenarios de alta concurrencia.',
+        'Aumento de la cobertura de pruebas automatizadas del 62% al 82% utilizando JUnit y Mockito.',
+        'Diseño e implementación de servicios REST para integración entre sistemas internos y gestión de incidencias en Azure DevOps.',
       ],
       tags: ['Java', 'Spring Boot', 'WebFlux', 'Arquitectura Hexagonal', 'JUnit', 'Mockito', 'Azure DevOps'],
       badge: 'ALTA CONCURRENCIA',
@@ -43,10 +47,12 @@ const experiencesData = {
       period: '02/2024 – 02/2025',
       location: 'Pasto, Colombia',
       summary: 'Administración de bases de datos relacionales en producción, mecanismos de seguridad y automatización de procesos operativos.',
+      impactMetric: 'ALTA DISPONIBILIDAD & DATOS',
+      impactColor: 'emerald',
       highlights: [
         'Administración y optimización de bases de datos PostgreSQL y MySQL para plataformas en producción.',
-        'Implementación de mecanismos de autenticación y control de acceso reforzando la seguridad.',
-        'Integración de sistemas vía APIs REST y soporte técnico con resolución de incidencias en ambientes productivos.',
+        'Implementación de mecanismos de autenticación y control de acceso, reforzando la seguridad de las aplicaciones.',
+        'Integración de sistemas mediante APIs REST y automatización de procesos internos con resolución de incidencias.',
       ],
       tags: ['PostgreSQL', 'MySQL', 'APIs REST', 'Seguridad', 'Automatización'],
       badge: 'PRODUCCIÓN',
@@ -56,13 +62,15 @@ const experiencesData = {
       role: 'Redinfoco · KeySafe · Academix',
       period: '02/2023 – 02/2024',
       location: 'Pasto, Colombia',
-      summary: 'Diseño de aplicaciones web, APIs REST y modelado de datos a medida para clientes independientes.',
+      summary: 'Desarrollo de aplicaciones web, APIs REST y modelado de datos a medida para clientes independientes.',
+      impactMetric: 'APIs REST & MODELADO',
+      impactColor: 'slate',
       highlights: [
-        'Desarrollo de aplicaciones web y APIs REST con Django, Python y PostgreSQL.',
-        'Diseño de paneles administrativos, autenticación, autorización y administración de usuarios.',
+        'Desarrollo de aplicaciones web y APIs REST con Django, Python y PostgreSQL para clientes independientes.',
+        'Diseño de paneles administrativos y sistemas de gestión con autenticación y autorización.',
         'Modelado de bases de datos relacionales y automatización de procesos empresariales.',
       ],
-      tags: ['Python', 'Django', 'PostgreSQL', 'Modelado Relacional'],
+      tags: ['Python', 'Django', 'PostgreSQL', 'Modelado Relacional', 'REST APIs'],
       badge: 'ARQUITECTURA WEB',
     },
   ],
@@ -72,11 +80,13 @@ const experiencesData = {
       role: 'Software Engineer — AI Inventory Optimization Project',
       period: '04/2026 – 06/2026',
       location: 'Pasto, Colombia',
-      summary: 'Development and integration of an AI chatbot using the Llama 3.2 3B model for real-time inventory queries in natural language.',
+      summary: 'Development and integration of an intelligent chatbot using the Llama 3.2 3B model for natural language inventory querying.',
+      impactMetric: 'APPLIED AI // LLAMA 3.2 3B',
+      impactColor: 'purple',
       highlights: [
-        'Built an AI chatbot with Llama 3.2 3B to query company inventory using natural language, accelerating product search.',
-        'Integrated the chatbot with legacy internal databases ensuring real-time synchronized stock data.',
-        'Engineered model prompt templates to enhance response precision and context relevance across query variations.',
+        'Built a chatbot powered by Llama 3.2 3B to query company inventory using natural language.',
+        'Integrated the chatbot with existing internal systems for real-time inventory updates.',
+        'Designed and tuned model prompts to maximize response precision across various query styles.',
       ],
       tags: ['Llama 3.2 3B', 'Python', 'REST APIs', 'Prompt Engineering', 'Integration'],
       badge: 'APPLIED AI',
@@ -85,13 +95,15 @@ const experiencesData = {
       company: 'Seguros SURA',
       role: 'Backend Software Engineer',
       period: '02/2025 – 02/2026',
-      location: 'Medellin (Remote)',
-      summary: 'Architectural migration, high-concurrency reactive microservices, and test coverage scaling across enterprise platforms.',
+      location: 'Medellin (Corporate Remote)',
+      summary: 'Architectural migration, reactive microservices in high concurrency, and automated testing on corporate platforms.',
+      impactMetric: '+35% SPEED // 82% TESTS',
+      impactColor: 'blue',
       highlights: [
         'Migrated microservices from Scala to Java under Hexagonal Architecture, cutting deployment time by 15%.',
-        'Implemented reactive services with Spring WebFlux, boosting response times by up to 35% in high-concurrency scenarios.',
-        'Elevated automated unit/integration test coverage from 62% to 82% using JUnit and Mockito.',
-        'Designed REST APIs for corporate systems integration and automated CI/CD pipelines in Azure DevOps.',
+        'Implemented reactive services with Spring WebFlux, improving response times up to 35% under high concurrency.',
+        'Increased automated test coverage from 62% to 82% using JUnit and Mockito.',
+        'Designed REST services for corporate platform integration and continuous deployment via Azure DevOps.',
       ],
       tags: ['Java', 'Spring Boot', 'WebFlux', 'Hexagonal Architecture', 'JUnit', 'Mockito', 'Azure DevOps'],
       badge: 'HIGH CONCURRENCY',
@@ -101,11 +113,13 @@ const experiencesData = {
       role: 'Software Engineer',
       period: '02/2024 – 02/2025',
       location: 'Pasto, Colombia',
-      summary: 'Production relational database administration, authentication mechanisms, and internal workflow automation.',
+      summary: 'Administration of relational databases in production, security mechanisms, and automation of operational processes.',
+      impactMetric: 'HIGH AVAILABILITY & DATA',
+      impactColor: 'emerald',
       highlights: [
-        'Administered and optimized PostgreSQL and MySQL databases for production business platforms.',
-        'Implemented authentication mechanisms and role-based access control, strengthening application security.',
-        'Integrated systems via REST APIs and resolved technical incidents in production database environments.',
+        'Administered and optimized PostgreSQL and MySQL databases for production platforms.',
+        'Implemented authentication and access control mechanisms, strengthening application security.',
+        'Integrated systems via REST APIs and automated internal processes with production incident support.',
       ],
       tags: ['PostgreSQL', 'MySQL', 'REST APIs', 'Security', 'Automation'],
       badge: 'PRODUCTION',
@@ -115,13 +129,15 @@ const experiencesData = {
       role: 'Redinfoco · KeySafe · Academix',
       period: '02/2023 – 02/2024',
       location: 'Pasto, Colombia',
-      summary: 'Design and deployment of web applications, REST APIs, and custom relational schemas for private clients.',
+      summary: 'Development of web applications, REST APIs, and relational data modeling for independent clients.',
+      impactMetric: 'REST APIS & MODELING',
+      impactColor: 'slate',
       highlights: [
-        'Engineered web applications and REST APIs using Django, Python, and PostgreSQL.',
-        'Built administrative dashboards, user authorization flows, and access control systems.',
-        'Modeled relational database schemas and automated key operational processes.',
+        'Developed web applications and REST APIs using Django, Python, and PostgreSQL.',
+        'Designed administrative dashboards and management systems with auth & authorization.',
+        'Relational database modeling and business process automation through custom solutions.',
       ],
-      tags: ['Python', 'Django', 'PostgreSQL', 'Relational Modeling'],
+      tags: ['Python', 'Django', 'PostgreSQL', 'Relational Modeling', 'REST APIs'],
       badge: 'WEB ARCHITECTURE',
     },
   ],
@@ -130,8 +146,7 @@ const experiencesData = {
 export default function Experience() {
   const sectionRef = useRef(null);
   const { language, t } = useLanguage();
-
-  const experiences = experiencesData[language] || experiencesData.es;
+  const currentExperiences = experiencesData[language] || experiencesData.es;
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -139,33 +154,17 @@ export default function Experience() {
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        '.exp-header',
+        '.experience-card',
         { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          duration: 0.7,
+          stagger: 0.12,
           ease: 'power3.out',
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: 'top 80%',
-            toggleActions: 'play none none none',
-          },
-        }
-      );
-
-      gsap.fromTo(
-        '.exp-card',
-        { opacity: 0, y: 35 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.75,
-          stagger: 0.15,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 70%',
+            start: 'top 75%',
             toggleActions: 'play none none none',
           },
         }
@@ -173,105 +172,122 @@ export default function Experience() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [language]);
+  }, []);
 
   return (
     <section
       id="experiencia"
       ref={sectionRef}
-      className="py-24 md:py-32 bg-arctic-ice border-b border-arctic-night/5 relative"
+      className="py-24 md:py-32 bg-slate-50 dark:bg-dark-bg border-b border-slate-200/80 dark:border-dark-border/60 relative overflow-hidden transition-colors duration-300"
     >
-      <div className="max-w-6xl mx-auto px-6 sm:px-8">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8">
         
         {/* Section Header */}
-        <div className="exp-header max-w-2xl mb-16">
-          <div className="mb-4">
-            <span className="font-mono text-xs font-semibold tracking-wider text-arctic-accent uppercase bg-white px-3.5 py-1.5 rounded-full border border-arctic-night/10 inline-flex items-center gap-2">
-              <span>{t.experience.tag}</span>
-            </span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-arctic-night tracking-tight mb-4">
+        <div className="mb-14">
+          <span className="font-mono text-xs font-semibold tracking-wider text-brand-600 dark:text-brand-400 uppercase bg-brand-50 dark:bg-brand-950/40 px-3.5 py-1.5 rounded-full border border-brand-200 dark:border-brand-500/30 inline-flex items-center gap-2">
+            <span>{t.experience.tag}</span>
+          </span>
+          <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white leading-tight tracking-tight mt-4">
             {t.experience.title}{' '}
-            <span className="font-serif italic font-normal text-arctic-accent">
+            <span className="bg-gradient-to-r from-brand-600 to-brand-purple dark:from-brand-400 dark:to-cyan-400 bg-clip-text text-transparent">
               {t.experience.titleHighlight}
             </span>
           </h2>
-          <p className="text-base sm:text-lg text-arctic-night/70 font-normal leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mt-3">
             {t.experience.description}
           </p>
         </div>
 
-        {/* Experience Cards Stack */}
-        <div className="space-y-8">
-          {experiences.map((exp) => (
-            <article
-              key={`${exp.company}-${exp.period}`}
-              className="exp-card card-hover p-8 sm:p-10 rounded-4xl bg-white border border-arctic-night/10 shadow-subtle hover:shadow-soft flex flex-col justify-between relative overflow-hidden"
-            >
-              <div>
-                {/* Header row */}
-                <div className="flex flex-wrap items-center justify-between gap-4 pb-6 mb-6 border-b border-arctic-night/10">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-2xl bg-arctic-ice text-arctic-night flex items-center justify-center font-bold">
-                      <Building2 className="w-5 h-5 text-arctic-accent" />
+        {/* Bento Timeline Grid */}
+        <div className="space-y-6">
+          {currentExperiences.map((exp, index) => {
+            const isSura = exp.company === 'Seguros SURA';
+            const isLlama = exp.badge === 'IA APLICADA' || exp.badge === 'APPLIED AI';
+
+            return (
+              <div
+                key={`${exp.company}-${index}`}
+                className={`experience-card bento-card spotlight-card p-6 sm:p-8 ${
+                  isSura
+                    ? 'border-brand-500/40 dark:border-brand-500/40 shadow-accent-glow/20'
+                    : isLlama
+                    ? 'border-purple-500/30 dark:border-purple-500/30'
+                    : ''
+                }`}
+              >
+                {/* Header Row: Company, Badge & Period */}
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-5 mb-5 border-b border-slate-100 dark:border-dark-border/60">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-dark-surface border border-slate-200 dark:border-dark-border flex items-center justify-center font-bold font-mono text-sm text-brand-600 dark:text-brand-400 shadow-2xs">
+                      {exp.company.substring(0, 2).toUpperCase()}
                     </div>
                     <div>
-                      <h3 className="text-xl sm:text-2xl font-bold text-arctic-night tracking-tight">
-                        {exp.company}
+                      <h3 className="font-heading text-lg sm:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <span>{exp.company}</span>
+                        {isSura && (
+                          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950/60 text-brand-700 dark:text-brand-300 font-semibold border border-brand-200 dark:border-brand-500/30">
+                            CORPORATE
+                          </span>
+                        )}
+                        {isLlama && (
+                          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 font-semibold border border-purple-200 dark:border-purple-500/30 flex items-center gap-1">
+                            <Sparkles className="w-3 h-3" /> LLM AGENT
+                          </span>
+                        )}
                       </h3>
-                      <div className="text-xs sm:text-sm font-semibold text-arctic-accent">
+                      <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
                         {exp.role}
-                      </div>
+                      </p>
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-3">
-                    <span className="font-mono text-xs text-arctic-night/70 bg-arctic-ice px-3 py-1.5 rounded-full border border-arctic-night/10 flex items-center gap-1.5">
-                      <Calendar className="w-3.5 h-3.5 text-arctic-accent" />
-                      {exp.period}
+                  <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-slate-500 dark:text-slate-400">
+                    <span className="inline-flex items-center gap-1.5 bg-slate-50 dark:bg-dark-surface px-3 py-1.5 rounded-lg border border-slate-200/60 dark:border-dark-border/60">
+                      <Calendar className="w-3.5 h-3.5 text-brand-500" />
+                      <span>{exp.period}</span>
                     </span>
-                    <span className="font-mono text-xs text-arctic-night/50 flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5" />
-                      {exp.location}
-                    </span>
-                    <span className="font-mono text-[11px] font-semibold text-arctic-accent bg-blue-50 px-2.5 py-1 rounded-md border border-arctic-accent/20">
-                      {exp.badge}
+                    <span className="inline-flex items-center gap-1.5 bg-slate-50 dark:bg-dark-surface px-3 py-1.5 rounded-lg border border-slate-200/60 dark:border-dark-border/60">
+                      <MapPin className="w-3.5 h-3.5 text-slate-400" />
+                      <span>{exp.location}</span>
                     </span>
                   </div>
                 </div>
 
-                {/* Summary */}
-                <p className="text-sm sm:text-base text-arctic-night/80 font-normal leading-relaxed mb-6">
-                  {exp.summary}
-                </p>
+                {/* Summary & Impact Banner */}
+                <div className="mb-6">
+                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
+                    {exp.summary}
+                  </p>
+                </div>
 
-                {/* Detailed Highlights */}
-                <ul className="space-y-3 mb-8">
-                  {exp.highlights.map((h, hIdx) => (
-                    <li key={hIdx} className="flex items-start gap-3 text-sm text-arctic-night/70 leading-relaxed">
-                      <CheckCircle2 className="w-4 h-4 text-arctic-accent shrink-0 mt-0.5" />
-                      <span>{h}</span>
-                    </li>
+                {/* Highlight Checkmarks */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                  {exp.highlights.map((h, i) => (
+                    <div
+                      key={i}
+                      className="p-3 rounded-xl bg-slate-50/70 dark:bg-dark-surface/50 border border-slate-200/60 dark:border-dark-border/50 flex items-start gap-2.5 text-xs sm:text-sm text-slate-700 dark:text-slate-300"
+                    >
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                      <span className="leading-snug">{h}</span>
+                    </div>
                   ))}
-                </ul>
-              </div>
+                </div>
 
-              {/* Technologies footer */}
-              <div className="pt-6 border-t border-arctic-night/10 flex flex-wrap items-center gap-2">
-                <span className="font-mono text-[11px] text-arctic-night/40 uppercase mr-2">
-                  {t.experience.techLabel}
-                </span>
-                {exp.tags.map((tItem) => (
-                  <span
-                    key={tItem}
-                    className="font-mono text-xs px-3 py-1 rounded-lg bg-arctic-ice text-arctic-night/80 border border-arctic-night/10"
-                  >
-                    {tItem}
-                  </span>
-                ))}
+                {/* Footer Tech Tags */}
+                <div className="flex flex-wrap items-center gap-2 pt-4 border-t border-slate-100 dark:border-dark-border/60 font-mono text-[11px]">
+                  <span className="text-slate-400 mr-1">{t.experience.techLabel || 'TECH //'}</span>
+                  {exp.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2.5 py-1 rounded-md bg-white dark:bg-dark-surface border border-slate-200 dark:border-dark-border text-slate-700 dark:text-slate-300 font-semibold shadow-2xs hover:border-brand-500/50 transition-colors"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </article>
-          ))}
+            );
+          })}
         </div>
 
       </div>

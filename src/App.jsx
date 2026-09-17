@@ -1,59 +1,46 @@
 import React from 'react';
 import { LanguageProvider } from './context/LanguageContext';
+import { ThemeProvider } from './context/ThemeContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Experience from './components/Experience';
-import Stack from './components/Stack';
-import MicroUIs from './components/MicroUIs';
 import Projects from './components/Projects';
-import Metrics from './components/Metrics';
-import Manifesto from './components/Manifesto';
+import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <div className="relative min-h-screen bg-arctic-white text-arctic-night font-sans selection:bg-arctic-accent selection:text-white overflow-x-hidden">
-        {/* Procedural Subtle SVG Noise Texture Overlay */}
-        <div className="noise-overlay" aria-hidden="true" />
+    <ThemeProvider>
+      <LanguageProvider>
+        <div className="relative min-h-screen bg-slate-50 dark:bg-dark-bg text-slate-900 dark:text-slate-100 font-sans selection:bg-brand-500 selection:text-white overflow-x-hidden transition-colors duration-300">
+          {/* Subtle noise texture */}
+          <div className="noise-overlay" aria-hidden="true" />
 
-        {/* 1. Floating Island Navbar with Language Switcher */}
-        <Navbar />
+          {/* 1. Navbar con selector de tema e idioma */}
+          <Navbar />
 
-        <main>
-          {/* 2. Hero — Statement Personal H5 */}
-          <Hero />
+          <main>
+            {/* 2. Hero con botón directo a Proyectos */}
+            <Hero />
 
-          {/* 3. Sobre Mí — 01 / SOBRE MÍ */}
-          <About />
+            {/* 3. Descripción de mí y formación */}
+            <About />
 
-          {/* 4. Trayectoria Profesional — Seguros SURA, Servitec, Freelance */}
-          <Experience />
+            {/* 4. Mis proyectos reales con filtros y enlaces a GitHub */}
+            <Projects />
 
-          {/* 5. Stack & Enfoque — Java, Spring Boot, WebFlux, Hexagonal, DBs, AWS */}
-          <Stack />
+            {/* 5. Mi experiencia profesional y logros en producción */}
+            <Experience />
 
-          {/* 6, 7, 8. Micro-UIs: F7 Mini Dashboard, F9 Comparador, F3 Calendario Cursor */}
-          <MicroUIs />
+            {/* 6. Canales directos de contacto y mensaje */}
+            <Contact />
+          </main>
 
-          {/* 9. Proyectos — Llama 3.2 3B, Microservicios Reactivos, Django APIs */}
-          <Projects />
-
-          {/* 10. Métricas de Impacto — SP4 (+3 años, +35% velocidad, 82% tests, -15% deploy) */}
-          <Metrics />
-
-          {/* 11. Manifiesto — M2 Cita Fullscreen */}
-          <Manifesto />
-
-          {/* 12. Contacto Directo & Formulario Web */}
-          <Contact />
-        </main>
-
-        {/* 13. Footer */}
-        <Footer />
-      </div>
-    </LanguageProvider>
+          {/* 7. Footer */}
+          <Footer />
+        </div>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }
