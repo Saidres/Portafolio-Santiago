@@ -2,28 +2,35 @@
   {
     "id": 1,
     "title": {
-      "es": "Optimización de Inventario con IA (Llama 3.2 3B)",
-      "en": "AI Inventory Optimization with Llama 3.2 3B"
+      "es": "TicketPulse — Plataforma Reactiva de Venta Masiva de Entradas",
+      "en": "TicketPulse — Reactive High-Concurrency Ticketing Platform"
     },
-    "company": "Servitec E.D.S",
+    "company": "TicketPulse · Arquitectura Reactiva",
     "description": {
-      "es": "Desarrollo de un chatbot con el modelo Llama 3.2 3B para consultar el inventario de la empresa en lenguaje natural en tiempo real a solicitud del negocio.",
-      "en": "Development of an AI chatbot using the Llama 3.2 3B model to query company inventory in natural language in real-time."
+      "es": "Plataforma reactiva de venta masiva de entradas para eventos de alta concurrencia. Implementa arquitectura hexagonal con Spring WebFlux y PostgreSQL (R2DBC) para eliminar la sobreventa en tiempo real, streaming reactivo de asientos vía SSE y desacoplamiento asíncrono con Apache Kafka y AWS S3.",
+      "en": "Reactive high-concurrency event ticketing platform. Implements hexagonal architecture with Spring WebFlux and PostgreSQL (R2DBC) to prevent overselling in real-time, reactive seat streaming via SSE, and asynchronous event decoupling with Apache Kafka and AWS S3."
     },
     "category": {
-      "es": "Backend & IA Aplicada",
-      "en": "Backend & Applied AI"
+      "es": "Arquitectura Reactiva & Alta Concurrencia",
+      "en": "Reactive Architecture & High Concurrency"
     },
     "technologies": [
-      "Llama 3.2 3B",
-      "Python",
-      "APIs REST",
-      "Prompt Engineering",
-      "PostgreSQL"
+      "Java",
+      "Spring WebFlux",
+      "Arquitectura Hexagonal",
+      "PostgreSQL (R2DBC)",
+      "Apache Kafka",
+      "AWS S3",
+      "Server-Sent Events (SSE)",
+      "Docker"
     ],
-    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1000&q=80",
+    "image": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=1000&q=80",
     "liveUrl": "",
-    "repositoryUrl": "https://github.com/Saidres"
+    "repositoryUrl": "https://github.com/Saidres/TicketPulseReactivo",
+    "systemType": {
+      "es": "Alta Concurrencia & Streaming",
+      "en": "High Concurrency & Streaming"
+    }
   },
   {
     "id": 2,
@@ -56,6 +63,32 @@
   {
     "id": 3,
     "title": {
+      "es": "Optimización de Inventario con IA (Llama 3.2 3B)",
+      "en": "AI Inventory Optimization with Llama 3.2 3B"
+    },
+    "company": "Servitec E.D.S",
+    "description": {
+      "es": "Desarrollo de un chatbot con el modelo Llama 3.2 3B para consultar el inventario de la empresa en lenguaje natural en tiempo real a solicitud del negocio.",
+      "en": "Development of an AI chatbot using the Llama 3.2 3B model to query company inventory in natural language in real-time."
+    },
+    "category": {
+      "es": "Backend & IA Aplicada",
+      "en": "Backend & Applied AI"
+    },
+    "technologies": [
+      "Llama 3.2 3B",
+      "Python",
+      "APIs REST",
+      "Prompt Engineering",
+      "PostgreSQL"
+    ],
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1000&q=80",
+    "liveUrl": "",
+    "repositoryUrl": "https://github.com/Saidres"
+  },
+  {
+    "id": 4,
+    "title": {
       "es": "Plataforma de Servicios & APIs REST con Django",
       "en": "Services Platform & REST APIs with Django"
     },
@@ -76,6 +109,7 @@
       "Modelado Relacional"
     ],
     "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80",
-    "liveUrl": ""
+    "liveUrl": "",
+    "repositoryUrl": "https://github.com/Saidres"
   }
 ]

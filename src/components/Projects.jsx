@@ -134,7 +134,7 @@ export default function Projects({ projects = projectsData }) {
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-brand-500" />
                       <span className="font-mono text-xs font-bold text-slate-700 dark:text-slate-300">
-                        {project.company}
+                        {getLocalized(project.company)}
                       </span>
                     </div>
                     <span className="font-mono text-[10.5px] px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-dark-surface text-slate-600 dark:text-slate-400 border border-slate-200/60 dark:border-dark-border">
@@ -180,7 +180,11 @@ export default function Projects({ projects = projectsData }) {
                     </a>
 
                     <span className="font-mono text-[10px] text-slate-400">
-                      {project.company.includes('SURA') ? 'Corporate Microservice' : 'Production System'}
+                      {project.systemType
+                        ? getLocalized(project.systemType)
+                        : (typeof project.company === 'string' ? project.company : project.company?.es || '').includes('SURA')
+                        ? (language === 'en' ? 'Corporate Microservice' : 'Microservicio Corporativo')
+                        : (language === 'en' ? 'Production System' : 'Sistema en Producción')}
                     </span>
                   </div>
                 </div>
