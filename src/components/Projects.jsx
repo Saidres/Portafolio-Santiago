@@ -1,15 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { 
-  ArrowUpRight, 
-  Terminal, 
-  Layers, 
-  Sparkles, 
-  ExternalLink,
-  Code2,
-  FolderGit2
-} from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { GithubIcon } from './Icons';
 import projectsData from '../data/projects.json';
 import { useLanguage } from '../context/LanguageContext';
@@ -22,6 +14,7 @@ export default function Projects({ projects = projectsData }) {
   const [activeFilter, setActiveFilter] = useState('all');
 
   const getLocalized = (field) => {
+    if (Array.isArray(field)) return field;
     if (typeof field === 'object' && field !== null) {
       return field[language] || field.es || '';
     }
@@ -31,8 +24,9 @@ export default function Projects({ projects = projectsData }) {
   const categories = [
     { id: 'all', label: language === 'en' ? 'All Projects' : 'Todos los Proyectos' },
     { id: 'java', label: 'Java & Spring Boot' },
+    { id: 'ruby', label: 'Ruby on Rails' },
     { id: 'ai', label: 'IA & Python' },
-    { id: 'microservices', label: 'Microservicios' },
+    { id: 'microservices', label: language === 'en' ? 'Microservices & APIs' : 'Microservicios & APIs' },
   ];
 
   const filteredProjects = projects.filter((p) => {
@@ -40,11 +34,19 @@ export default function Projects({ projects = projectsData }) {
     if (activeFilter === 'java') {
       return p.technologies.some((tech) => tech.toLowerCase().includes('java') || tech.toLowerCase().includes('spring'));
     }
+    if (activeFilter === 'ruby') {
+      return p.technologies.some((tech) => tech.toLowerCase().includes('ruby') || tech.toLowerCase().includes('rails'));
+    }
     if (activeFilter === 'ai') {
       return p.technologies.some((tech) => tech.toLowerCase().includes('llama') || tech.toLowerCase().includes('python'));
     }
     if (activeFilter === 'microservices') {
-      return p.technologies.some((tech) => tech.toLowerCase().includes('microservicios') || tech.toLowerCase().includes('hexagonal') || tech.toLowerCase().includes('rest'));
+      return p.technologies.some((tech) => 
+        tech.toLowerCase().includes('microservicios') || 
+        tech.toLowerCase().includes('hexagonal') || 
+        tech.toLowerCase().includes('rest') ||
+        tech.toLowerCase().includes('api')
+      );
     }
     return true;
   });
@@ -148,9 +150,21 @@ export default function Projects({ projects = projectsData }) {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-6">
+                  <p className={`text-sm text-slate-600 dark:text-slate-300 leading-relaxed ${project.highlights ? 'mb-3' : 'mb-6'}`}>
                     {getLocalized(project.description)}
                   </p>
+
+                  {/* Highlights / Bullet points */}
+                  {project.highlights && (
+                    <ul className="space-y-2 mb-6 text-xs sm:text-[13px] text-slate-600 dark:text-slate-300">
+                      {(getLocalized(project.highlights) || []).map((item, i) => (
+                        <li key={i} className="flex items-start gap-2.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-brand-500 mt-2 shrink-0" />
+                          <span className="leading-relaxed">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
 
                 <div>

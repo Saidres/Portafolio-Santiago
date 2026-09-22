@@ -35,6 +35,59 @@
   {
     "id": 2,
     "title": {
+      "es": "Smart Billing & Inventory API — Procesamiento Atómico & Background Jobs",
+      "en": "Smart Billing & Inventory API — Atomic Processing & Background Jobs"
+    },
+    "company": {
+      "es": "Smart Billing · Rails 8 & Concurrencia",
+      "en": "Smart Billing · Rails 8 & Concurrency"
+    },
+    "description": {
+      "es": "API RESTful en Rails 8 para el procesamiento atómico de órdenes y facturación de alta concurrencia, mitigando sobreventa y delegando tareas a workers asíncronos.",
+      "en": "RESTful API in Rails 8 for atomic order processing and high-concurrency billing, preventing overselling and offloading tasks to asynchronous workers."
+    },
+    "highlights": {
+      "es": [
+        "Diseñé e implementé una API RESTful en Rails 8 para el procesamiento atómico de órdenes y control de inventario con PostgreSQL.",
+        "Implementé el patrón Service Object y transacciones de base de datos con bloqueo pesimista para mitigar condiciones de carrera y sobreventa.",
+        "Reduje la latencia de respuesta HTTP delegando la facturación y conversión de divisas a tareas en segundo plano mediante Sidekiq y Redis.",
+        "Desarrollé una suite de 52 pruebas automatizadas con RSpec y FactoryBot, cubriendo endpoints REST, modelos y background jobs.",
+        "Contenedoricé la solución con Docker Compose para orquestar la API, base de datos PostgreSQL, Redis y workers de Sidekiq."
+      ],
+      "en": [
+        "Designed and implemented a RESTful API in Rails 8 for atomic order processing and inventory control with PostgreSQL.",
+        "Implemented the Service Object pattern and database transactions with pessimistic locking to mitigate race conditions and overselling.",
+        "Reduced HTTP response latency by delegating billing and currency conversion to background tasks using Sidekiq and Redis.",
+        "Developed a suite of 52 automated tests with RSpec and FactoryBot, covering REST endpoints, models, and background jobs.",
+        "Containerized the solution with Docker Compose to orchestrate the API, PostgreSQL database, Redis, and Sidekiq workers."
+      ]
+    },
+    "category": {
+      "es": "APIs RESTful & Concurrencia",
+      "en": "RESTful APIs & Concurrency"
+    },
+    "technologies": [
+      "Ruby on Rails",
+      "Rails 8",
+      "PostgreSQL",
+      "Redis",
+      "Sidekiq",
+      "RSpec",
+      "FactoryBot",
+      "Docker",
+      "APIs REST"
+    ],
+    "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80",
+    "liveUrl": "",
+    "repositoryUrl": "https://github.com/Saidres",
+    "systemType": {
+      "es": "Transaccional & Background Jobs",
+      "en": "Transactional & Background Jobs"
+    }
+  },
+  {
+    "id": 3,
+    "title": {
       "es": "Microservicios Reactivos & Migración Hexagonal",
       "en": "Reactive Microservices & Hexagonal Migration"
     },
@@ -61,7 +114,7 @@
     "repositoryUrl": "https://github.com/Saidres"
   },
   {
-    "id": 3,
+    "id": 4,
     "title": {
       "es": "Optimización de Inventario con IA (Llama 3.2 3B)",
       "en": "AI Inventory Optimization with Llama 3.2 3B"
@@ -87,7 +140,7 @@
     "repositoryUrl": "https://github.com/Saidres"
   },
   {
-    "id": 4,
+    "id": 5,
     "title": {
       "es": "Plataforma de Servicios & APIs REST con Django",
       "en": "Services Platform & REST APIs with Django"
