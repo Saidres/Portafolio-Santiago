@@ -27,6 +27,7 @@ export default function Projects({ projects = projectsData }) {
     { id: 'ruby', label: 'Ruby on Rails' },
     { id: 'ai', label: 'IA & Python' },
     { id: 'microservices', label: language === 'en' ? 'Microservices & APIs' : 'Microservicios & APIs' },
+    { id: 'web', label: 'Full Stack & Web' },
   ];
 
   const filteredProjects = projects.filter((p) => {
@@ -46,6 +47,14 @@ export default function Projects({ projects = projectsData }) {
         tech.toLowerCase().includes('hexagonal') || 
         tech.toLowerCase().includes('rest') ||
         tech.toLowerCase().includes('api')
+      );
+    }
+    if (activeFilter === 'web') {
+      return p.technologies.some((tech) => 
+        tech.toLowerCase().includes('next') || 
+        tech.toLowerCase().includes('react') || 
+        tech.toLowerCase().includes('django') ||
+        tech.toLowerCase().includes('supabase')
       );
     }
     return true;

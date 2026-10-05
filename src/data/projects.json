@@ -164,5 +164,60 @@
     "image": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1000&q=80",
     "liveUrl": "",
     "repositoryUrl": "https://github.com/Saidres"
+  },
+  {
+    "id": 6,
+    "title": {
+      "es": "Rincón Dulce — E-Commerce & Checkout Conversacional vía Chat",
+      "en": "Rincón Dulce — E-Commerce & Conversational Chat Checkout"
+    },
+    "company": {
+      "es": "Rincón Dulce · Next.js & Supabase",
+      "en": "Rincón Dulce · Next.js & Supabase"
+    },
+    "description": {
+      "es": "Plataforma e-commerce mobile-first para catálogo digital interactivo de repostería y toma de pedidos con redirección conversacional a WhatsApp, eliminando intermediarios y comisiones de delivery. Integra panel administrativo protegido (/admin) con Supabase para control de catálogo, stock en tiempo real y exportación de reportes.",
+      "en": "Mobile-first e-commerce platform featuring an interactive pastry catalog and order processing with automated conversational WhatsApp redirection, eliminating third-party delivery commissions. Includes a protected admin panel (/admin) powered by Supabase for real-time inventory, catalog management, and report exports."
+    },
+    "highlights": {
+      "es": [
+        "Diseñé e implementé la arquitectura full stack mobile-first con Next.js 16 (App Router), React 19, TypeScript y Tailwind CSS v4.",
+        "Implementé el flujo de carrito y personalización de pedidos (toppings y especificaciones) con generación automática de mensajes estructurados hacia WhatsApp para atención directa.",
+        "Diseñé la base de datos relacional en PostgreSQL bajo Supabase, aplicando políticas de seguridad Row Level Security (RLS) y almacenamiento en Supabase Storage.",
+        "Desarrollé el panel administrativo (/admin) con Supabase Auth para que los dueños gestionen precios, productos, disponibilidad de stock (Agotado/Oculto) y horarios del negocio.",
+        "Integré módulo de exportación de pedidos y datos tabulares a Excel mediante SheetJS (xlsx)."
+      ],
+      "en": [
+        "Architected and developed the mobile-first full stack application using Next.js 16 (App Router), React 19, TypeScript, and Tailwind CSS v4.",
+        "Engineered the cart and customized ordering workflow with dynamic structured message generation redirecting to WhatsApp for direct customer care.",
+        "Designed the PostgreSQL relational database architecture on Supabase with Row Level Security (RLS) policies and Supabase Storage.",
+        "Built the protected admin dashboard (/admin) with Supabase Auth for real-time price updates, inventory management, and store configuration.",
+        "Implemented tabular order data and reporting exports to Excel using SheetJS (xlsx)."
+      ]
+    },
+    "category": {
+      "es": "E-Commerce & Full Stack",
+      "en": "E-Commerce & Full Stack"
+    },
+    "technologies": [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS v4",
+      "Supabase",
+      "PostgreSQL",
+      "Row Level Security (RLS)",
+      "Supabase Auth & Storage",
+      "WhatsApp Business API",
+      "SheetJS (xlsx)",
+      "REST APIs"
+    ],
+    "image": "https://images.unsplash.com/photo-1562376552-0d160a2f238d?auto=format&fit=crop&w=1000&q=80",
+    "liveUrl": "",
+    "repositoryUrl": "https://github.com/Saidres/rincondulce",
+    "systemType": {
+      "es": "E-Commerce & Gestión en Tiempo Real",
+      "en": "E-Commerce & Real-Time Management"
+    }
   }
 ]
